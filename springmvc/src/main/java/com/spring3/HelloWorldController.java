@@ -17,9 +17,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloWorldController {
     
-    @RequestMapping("/hello")
-    public ModelAndView helloWorld() {
-        return new ModelAndView("hellopage", "message", "Welcome to Spring 3");
+    @RequestMapping("/")
+    public ModelAndView welcome() {
+        return new ModelAndView("../../index");
     }
     
+    @RequestMapping("/hello")
+    public ModelAndView hello() {
+        return new ModelAndView("hello", "message", "Welcome to Spring 3");
+    }
+    
+    @RequestMapping("/hi")
+    public ModelAndView hi() {
+        return new ModelAndView("hi", "message", new Person(28, "Frank"));
+    }
 }
