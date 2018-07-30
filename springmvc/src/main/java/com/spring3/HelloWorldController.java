@@ -20,7 +20,7 @@ public class HelloWorldController {
     
     @RequestMapping("/")
     public ModelAndView welcome() {
-        return new ModelAndView("../../index");
+        return new ModelAndView("index");
     }
     
     @RequestMapping("/hello")
