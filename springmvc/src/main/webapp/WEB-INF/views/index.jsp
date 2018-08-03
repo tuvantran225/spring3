@@ -12,8 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="hello">Say Hello</a><br/>
-        <a href="hi">Say Hi</a><br/>
-        <a href="login">Login</a>
+        <a href="/springmvc/hello">Say Hello</a><br/>
+        <a href="/springmvc/hi">Say Hi</a><br/>
+        <a href="/springmvc/login">Login</a>
     </body>
 </html>
