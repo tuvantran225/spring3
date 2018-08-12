@@ -14,6 +14,15 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
+<!--    <servlet>
+        <servlet-name>servlet1</servlet-name>
+        <servlet-class>com.servlet.Servlet1Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servlet1</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>-->
+    
     <filter>
         <filter-name>filter1</filter-name>
         <filter-class>com.filter.Filter1Filter</filter-class>
@@ -30,4 +39,29 @@
         <filter-name>filter2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <context-param>
+        <param-name>DBUSER</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DBPWD</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DBURL</param-name>
+        <param-value>jdbc:mysql://localhost/mysql_db</param-value>
+    </context-param>
+    <listener>
+        <listener-class>com.listener.AppContextAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.listener.AppContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.listener.MyServletRequestListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.listener.MySessionListener</listener-class>
+    </listener>
 </web-app>
