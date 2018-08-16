@@ -5,71 +5,136 @@
  */
 package com.spring3.tutorial.model;
 
+import java.io.Serializable;
+import java.sql.Blob;
+
 /**
  *
  * @author TRAN VAN PHU
  */
-public class Customer {
+public class Customer implements Serializable{
     
-    private String id;
-    private String companyName;
-    private String contactName;
-    private String contactTitle;
+    private long id;
+    private String company;
+    private String lastName;
+    private String firstName;
+    private String emailAddress;
+    private String jobTitle;
+    private String businessPhone;
+    private String homePhone;
+    private String mobilePhone;
+    private String faxNumber;
     private String address;
     private String city;
-    private String region;
-    private String postalCode;
-    private String country;
-    private String phone;
-    private String fax;
+    private String stateProvince;
+    private String zipPortalCode;
+    private String countryRegion;
+    private String webPage;
+    private String notes;
+    private Blob attachments;
 
     public Customer() {
     }
 
-    public Customer(String id, String companyName, String contactName, String contactTitle, String address, String city, String region, String postalCode, String country, String phone, String fax) {
+    public Customer(long id, String company, String lastName, String firstName, String emailAddress, String jobTitle, String businessPhone, String homePhone, String mobilePhone, String faxNumber, String address, String city, String stateProvince, String zipPortalCode, String countryRegion, String webPage, String notes, Blob attachments) {
         this.id = id;
-        this.companyName = companyName;
-        this.contactName = contactName;
-        this.contactTitle = contactTitle;
+        this.company = company;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.emailAddress = emailAddress;
+        this.jobTitle = jobTitle;
+        this.businessPhone = businessPhone;
+        this.homePhone = homePhone;
+        this.mobilePhone = mobilePhone;
+        this.faxNumber = faxNumber;
         this.address = address;
         this.city = city;
-        this.region = region;
-        this.postalCode = postalCode;
-        this.country = country;
-        this.phone = phone;
-        this.fax = fax;
+        this.stateProvince = stateProvince;
+        this.zipPortalCode = zipPortalCode;
+        this.countryRegion = countryRegion;
+        this.webPage = webPage;
+        this.notes = notes;
+        this.attachments = attachments;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getCompany() {
+        return company;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public String getContactName() {
-        return contactName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getContactTitle() {
-        return contactTitle;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setContactTitle(String contactTitle) {
-        this.contactTitle = contactTitle;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getBusinessPhone() {
+        return businessPhone;
+    }
+
+    public void setBusinessPhone(String businessPhone) {
+        this.businessPhone = businessPhone;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    public void setFaxNumber(String faxNumber) {
+        this.faxNumber = faxNumber;
     }
 
     public String getAddress() {
@@ -88,49 +153,57 @@ public class Customer {
         this.city = city;
     }
 
-    public String getRegion() {
-        return region;
+    public String getStateProvince() {
+        return stateProvince;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setStateProvince(String stateProvince) {
+        this.stateProvince = stateProvince;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getZipPortalCode() {
+        return zipPortalCode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setZipPortalCode(String zipPortalCode) {
+        this.zipPortalCode = zipPortalCode;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCountryRegion() {
+        return countryRegion;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountryRegion(String countryRegion) {
+        this.countryRegion = countryRegion;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getWebPage() {
+        return webPage;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setWebPage(String webPage) {
+        this.webPage = webPage;
     }
 
-    public String getFax() {
-        return fax;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setFax(String fax) {
-        this.fax = fax;
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Blob getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(Blob attachments) {
+        this.attachments = attachments;
     }
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", companyName=" + companyName + ", contactName=" + contactName + ", contactTitle=" + contactTitle + ", address=" + address + ", city=" + city + ", region=" + region + ", postalCode=" + postalCode + ", country=" + country + ", phone=" + phone + ", fax=" + fax + '}';
+        return "Customer{" + "id=" + id + ", company=" + company + ", lastName=" + lastName + ", firstName=" + firstName + ", emailAddress=" + emailAddress + ", jobTitle=" + jobTitle + ", businessPhone=" + businessPhone + ", homePhone=" + homePhone + ", mobilePhone=" + mobilePhone + ", faxNumber=" + faxNumber + ", address=" + address + ", city=" + city + ", stateProvince=" + stateProvince + ", zipPortalCode=" + zipPortalCode + ", countryRegion=" + countryRegion + ", webPage=" + webPage + ", notes=" + notes + ", attachments=" + attachments + '}';
     }
-    
+
 }

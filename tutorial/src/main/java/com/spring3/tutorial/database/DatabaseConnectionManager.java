@@ -17,14 +17,11 @@ import java.util.logging.Logger;
  */
 public class DatabaseConnectionManager {
     
-    private String url;
-    private String user;
-    private String password;
+    private final String url;
+    private final String user;
+    private final String password;
     private Connection con;
 
-    public DatabaseConnectionManager() {
-    }
-    
     public DatabaseConnectionManager(String url, String user, String password) {
         this.url = url;
         this.user = user;

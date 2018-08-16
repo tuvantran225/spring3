@@ -7,7 +7,7 @@ package com.spring3.tutorial.controller;
 
 import com.spring3.tutorial.database.DatabaseConnectionManager;
 import com.spring3.tutorial.model.Customer;
-import java.sql.Connection;
+import com.spring3.tutorial.page.CustomerPage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,45 +15,70 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 /**
  *
  * @author TRAN VAN PHU
  */
-
 @Controller
 public class AppController {
     
-    private final Connection connection = new DatabaseConnectionManager().getConnection();
+    @Autowired
+    private ServletContext context;
     
-    @RequestMapping("/customers")
-    public ModelAndView getAllCustomers() {
+    private List<Customer> getAllCustomers() {
         List<Customer> customers = new ArrayList<>();
         try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("");
+            DatabaseConnectionManager connectionManager = (DatabaseConnectionManager) context.getAttribute("dbManager");
+            Statement stmt = connectionManager.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("select * from customers");
             while (rs.next()) {
-                String id = rs.getString("CustomerID");
-                String companyName = rs.getString("CompanyName");
-                String contactName = rs.getString("ContactName");
-                String contactTitle = rs.getString("ContactTitle");
-                String address = rs.getString("Address");
-                String city = rs.getString("City");
-                String region = rs.getString("Region");
-                String postalCode = rs.getString("PostalCode");
-                String country = rs.getString("Country");
-                String phone = rs.getString("Phone");
-                String fax = rs.getString("Fax");
-                Customer customer = new Customer(id, companyName, contactName, contactTitle, address, city, region, postalCode, country, phone, fax);
+                long id = rs.getLong("id");
+                String company = rs.getString("company");
+                String lastName = rs.getString("last_name");
+                String firstName = rs.getString("first_name");
+                String emailAddress = rs.getString("email_address");
+                String jobTitle = rs.getString("job_title");
+                String businessPhone = rs.getString("business_phone");
+                String homePhone = rs.getString("home_phone");
+                String mobilePhone = rs.getString("mobile_phone");
+                String faxNumber = rs.getString("fax_number");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String stateProvince = rs.getString("state_province");
+                String zipPortalCode = rs.getString("zip_postal_code");
+                String countryRegion = rs.getString("country_region");
+                String webPage = rs.getString("web_page");
+                String notes = rs.getString("notes");
+//                Blob attachments = rs.getBlob("attachments");
+                Customer customer = new Customer(id, company, lastName, firstName, emailAddress, jobTitle, businessPhone, homePhone, mobilePhone, faxNumber, address, city, stateProvince, zipPortalCode, countryRegion, webPage, notes, null);
                 customers.add(customer);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new ModelAndView("customer", "customer", customers);
+        return customers;
     }
     
+    @RequestMapping(value = "/getCustomers")
+    @ResponseBody
+    public CustomerPage getCustomerPage(
+            @RequestParam String name,
+            @RequestParam String email) {
+        List<Customer> customers = getAllCustomers();
+        Customer[] customerArray = new Customer[customers.size()];
+        customerArray = customers.toArray(customerArray);
+        CustomerPage customerPage = new CustomerPage("ok", 1, customers.size(), customerArray);
+        return customerPage;
+    }
+    
+    @RequestMapping("/customers")
+    public String customerHome() {
+        return "customer";
+    }
 }
