@@ -67,9 +67,7 @@ public class AppController {
     
     @RequestMapping(value = "/getCustomers")
     @ResponseBody
-    public CustomerPage getCustomerPage(
-            @RequestParam String name,
-            @RequestParam String email) {
+    public CustomerPage getCustomerPage() {
         List<Customer> customers = getAllCustomers();
         Customer[] customerArray = new Customer[customers.size()];
         customerArray = customers.toArray(customerArray);

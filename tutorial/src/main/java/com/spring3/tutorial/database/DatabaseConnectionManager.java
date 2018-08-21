@@ -40,7 +40,9 @@ public class DatabaseConnectionManager {
 
     public void closeConnection() {
         try {
-            con.close();
+            if(con != null) {
+                con.close();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
