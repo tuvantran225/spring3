@@ -33,10 +33,6 @@ $(document).ready(function() {
                 { display: 'Notes', name: 'notes', width: 100, sortable: true, align: 'left' },
                 { display: 'Attachments', name: 'attachments', width: 100, sortable: true, align: 'left' }
             ],
-            searchitems: [
-                { display: 'ISO', name: 'iso' },
-                { display: 'Name', name: 'name', isdefault: true }
-            ],
             sortname: "iso",
             sortorder: "asc",
             usepager: true,
@@ -46,8 +42,7 @@ $(document).ready(function() {
             autoGenerateColumns: false,
             showTableToggleBtn: true,
             onSubmit: onSubmit,
-            onSuccess: onSuccess,
-            height: 400
+            onSuccess: onSuccess
         });
     }
     
@@ -57,6 +52,10 @@ $(document).ready(function() {
     
     function onSuccess() {
         return true;
+    }
+    
+    function onRender(rowData, cellData, colModel, rowIdx, ColIdx, tr, td) {
+        console.log();
     }
     
     function search() {

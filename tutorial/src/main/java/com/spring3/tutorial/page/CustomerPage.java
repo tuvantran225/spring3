@@ -13,24 +13,14 @@ import com.spring3.tutorial.model.Customer;
  */
 public class CustomerPage {
     
-    private String stat;
     private int page;
     private int total;
     private Customer[] rows;
 
-    public CustomerPage(String stat, int page, int total, Customer[] rows) {
-        this.stat = stat;
+    public CustomerPage(int page, int total, Customer[] rows) {
         this.page = page;
         this.total = total;
         this.rows = rows;
-    }
-
-    public String getStat() {
-        return stat;
-    }
-
-    public void setStat(String stat) {
-        this.stat = stat;
     }
 
     public int getPage() {

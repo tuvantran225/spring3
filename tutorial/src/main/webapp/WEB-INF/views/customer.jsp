@@ -22,7 +22,7 @@
         <div class="container">
             <form>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="form-group col-md-3">
                         <label>Company</label>
                         <input type="text" class="form-control" id="company" name="company">
                     </div>
@@ -41,9 +41,16 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="form-group col-md-3">
                         <label>Job Title</label>
-                        <input type="text" class="form-control" id="jobTitle" name="jobTitle">
+                        <select class="form-control" id="jobTitle" name="jobTitle">
+                            <option value="Owner">Owner</option>
+                            <option value="Purchasing Representative">Purchasing Representative</option>
+                            <option value="Purchasing Manager">Purchasing Manager</option>
+                            <option value="Accounting Assistant">Accounting Assistant</option>
+                            <option value="Accounting Manager">Accounting Manager</option>
+                            <option value="Purchasing Assistant">Purchasing Assistant</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-3">
                         <label>Business Phone</label>
@@ -60,7 +67,7 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="form-group col-md-3">
                         <label>Fax Number</label>
                         <input type="text" class="form-control" id="faxNumber" name="faxNumber">
                     </div>
@@ -79,7 +86,7 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="form-group col-md-3">
                         <label>Zip Portal Code</label>
                         <input type="text" class="form-control" id="zip" name="zip">
                     </div>

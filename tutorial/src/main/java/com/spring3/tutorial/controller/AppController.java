@@ -87,7 +87,7 @@ public class AppController {
         List<Customer> customers = getAllCustomers();
         Customer[] customerArray = new Customer[customers.size()];
         customerArray = customers.toArray(customerArray);
-        CustomerPage customerPage = new CustomerPage("ok", 1, customers.size(), customerArray);
+        CustomerPage customerPage = new CustomerPage(2, customers.size(), customerArray);
         return customerPage;
     }
     

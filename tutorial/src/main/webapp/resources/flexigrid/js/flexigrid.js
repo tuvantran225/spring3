@@ -117,6 +117,7 @@
 			onSuccess: false,
 			onError: false,
 			onSubmit: false, //using a custom populate function
+                        onRender:function(rowData, cellData, colModel, row, col){return cellData;},
             __mw: { //extendable middleware function holding object
                 datacol: function(p, col, val) { //middleware for formatting data columns
                     var _col = (typeof p.datacol[col] == 'function') ? p.datacol[col](val) : val; //format column using function
@@ -454,24 +455,22 @@
 								var td = document.createElement('td');
 								var idx = $(this).attr('axis').substr(3);
 								td.align = this.align;
-								// If each row is the object itself (no 'cell' key)
-								if (typeof row.cell == 'undefined') {
-									td.innerHTML = row[p.colModel[idx].name];
-								} else {
-									// If the json elements aren't named (which is typical), use numeric order
-                                    var iHTML = '';
-                                    if (typeof row.cell[idx] != "undefined") {
-                                        iHTML = (row.cell[idx] !== null) ? row.cell[idx] : ''; //null-check for Opera-browser
-                                    } else {
-                                        iHTML = row.cell[p.colModel[idx].name];
-                                    }
-                                    td.innerHTML = p.__mw.datacol(p, $(this).attr('abbr'), iHTML); //use middleware datacol to format cols
-								}
-								// If the content has a <BGCOLOR=nnnnnn> option, decode it.
-								var offs = td.innerHTML.indexOf( '<BGCOLOR=' );
-								if( offs >0 ) {
-                                    $(td).css('background', text.substr(offs+7,7) );
-								}
+                                                                if(typeof row.cell != 'undefined'){
+                                                                    row = row.cell;
+                                                                }
+                                                                var data = "";
+                                                                if (typeof row[idx] != "undefined") {
+                                                                       data = (row[idx] != null) ? row[idx] : '';//null-check for Opera-browser
+                                                                } else {
+                                                                       data = row[p.colModel[idx].name];
+                                                                       data = data == undefined || data == null ? "" : data;
+                                                                }
+                                                                if(p.onRender) data = p.onRender(row, data, p.colModel[idx], i, idx, tr ,td);
+                                                                td.innerHTML = data;
+								$(td).attr('abbr', $(this).attr('abbr'));
+                                                                if(p.colModel[idx].className){
+                                                                    $(td).addClass(p.colModel[idx].className);
+                                                                }
 
 								$(td).attr('abbr', $(this).attr('abbr'));
 								$(tr).append(td);
